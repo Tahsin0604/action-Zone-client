@@ -2,18 +2,22 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper";
+import { Autoplay, Navigation } from "swiper";
 
 const Banner = () => {
   return (
     <Swiper
       // install Swiper modules
-      modules={[Navigation]}
+      modules={[Autoplay, Navigation]}
       slidesPerView={1}
       spaceBetween={30}
       navigation={true}
       loop={true}
-      className="py-8"
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
+      }}
+      className="py-8 "
     >
       {/* Slider 1 */}
       <SwiperSlide className="py-8 px-12">
