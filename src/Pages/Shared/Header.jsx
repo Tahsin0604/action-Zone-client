@@ -53,7 +53,7 @@ const Header = () => {
     </>
   );
   return (
-    <header className=" px-6 md:px-16 lg:px-32 py-10 mx-auto  ">
+    <header className=" custom-container ">
       <nav className="flex justify-between items-end gap-6">
         <a href="/" className="cursor-pointer flex gap-3 items-end">
           <img src={logo} alt="" className="h-16" />

@@ -20,7 +20,7 @@ const Banner = () => {
       className="py-8 "
     >
       {/* Slider 1 */}
-      <SwiperSlide className="py-8 px-12">
+      <SwiperSlide className="py-20 px-12">
         <div className="flex flex-col md:flex-row justify-center items-center gap-6 ">
           <div className="w-full md:w-1/2 pl-8 md:pl-14 lg:pl-20 space-y-8">
             <h1 className="font-permanentMarker text-2xl text-slate-800">

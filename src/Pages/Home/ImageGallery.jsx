@@ -53,9 +53,9 @@ const ImageGallery = () => {
   };
 
   return (
-    <div className="py-10 bg-sky-300 ">
+    <div className="custom-container py-10 bg-sky-300 ">
       <h1
-        className="text-center text-4xl font-bold text-slate-800 font-bruno drop-shadow mt-6"
+        className="section-title"
         data-aos="fade-right"
         data-aos-duration="1500"
         data-aos-delay="200"
@@ -63,17 +63,14 @@ const ImageGallery = () => {
         Toys Gallery
       </h1>
       <p
-        className="text-center font-bold text-slate-600 font-spaceMono my-10"
+        className="section-paragraph"
         data-aos="fade-left"
         data-aos-duration="1500"
         data-aos-delay="200"
       >
         Most popular toys right now in our shop
       </p>
-      <ResponsiveMasonry
-        columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }}
-        className="px-6 md:px-16 lg:px-32 py-10 mx-auto "
-      >
+      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }}>
         <Masonry gutter="20px">
           {images.map((image, i) => (
             <div
