@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import register from "../../../assets/img/login/login.jpg";
 import React from "react";
-import { FaGoogle, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaGoogle } from "react-icons/fa";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   useEffect(() => {
@@ -12,6 +14,68 @@ const Register = () => {
       once: true,
     });
   }, []);
+
+  const { createUser, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const location = useLocation();
+  const from = location.state?.from || "/";
+  console.log(from);
+  const navigate = useNavigate();
+  //form submit
+  const handleForm = (e) => {
+    setError("");
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const password = form.password.value;
+    const confirm = form.confirm.value;
+    if (password !== confirm) {
+      setError("Password Does not match.");
+      return;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 character long");
+      return;
+    }
+    createUser(email, password)
+      .then((result) => {
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photo,
+        })
+          .then(() => {
+            // const loggedUser = data.user;
+            navigate(from, { replace: true });
+            form.reset();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((err) => setError(err.message));
+  };
+
+  // google button handler
+  const handleGoogle = () => {
+    googleSignIn()
+      .then((result) => {
+        navigate(from, { replace: true });
+      })
+      .catch((err) => setError(err.message));
+  };
+
+  // github button handler
+  const handleGithub = () => {
+    githubSignIn()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        navigate(from, { replace: true });
+      })
+      .catch((err) => setError(err.message));
+  };
   return (
     <div className="custom-container py-16">
       <h1
@@ -42,7 +106,7 @@ const Register = () => {
             data-aos-duration="1500"
             data-aos-delay="200"
           >
-            <form className="max-w-lg space-y-5 mx-auto">
+            <form onSubmit={handleForm} className="max-w-lg space-y-5 mx-auto">
               {/* name */}
               <div className="flex flex-col space-y-2">
                 <label>
@@ -53,7 +117,7 @@ const Register = () => {
                   placeholder="Name"
                   name="name"
                   required
-                  className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md font-spaceMono"
+                  className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md "
                 />
               </div>
 
@@ -67,7 +131,7 @@ const Register = () => {
                   placeholder="Email"
                   name="email"
                   required
-                  className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md font-spaceMono"
+                  className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md "
                 />
               </div>
 
@@ -80,8 +144,7 @@ const Register = () => {
                   type="text"
                   placeholder="Photo URL"
                   name="photo"
-                  required
-                  className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md font-spaceMono"
+                  className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md "
                 />
               </div>
 
@@ -95,7 +158,7 @@ const Register = () => {
                   placeholder="Password"
                   name="password"
                   required
-                  className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md font-spaceMono"
+                  className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md "
                 />
               </div>
 
@@ -109,7 +172,7 @@ const Register = () => {
                   placeholder="Confirm Password"
                   name="confirm"
                   required
-                  className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md font-spaceMono"
+                  className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md "
                 />
                 <label>
                   <p className="font-spaceMono text-slate-600">
@@ -117,6 +180,8 @@ const Register = () => {
                       Already have an account?
                       <Link
                         to="/login"
+                        state={{ from: from }}
+                        replace
                         className="ml-3 font-bold hover:text-sky-500 hover:underline underline-offset-4 duration-200 transition-colors ease-in-out"
                       >
                         Login
@@ -129,6 +194,9 @@ const Register = () => {
               <div className="w-full">
                 <button className="button-secondary w-full">Register</button>
               </div>
+              <label>
+                <p className="font-spaceMono text-red-600 my-4">{error}</p>
+              </label>
             </form>
           </div>
           <div
@@ -145,11 +213,17 @@ const Register = () => {
             data-aos-duration="1500"
             data-aos-delay="200"
           >
-            <button className="p-4  rounded-full border border-solid shadow-xl shadow-slate-300 font-semibold tracking-wider text-slate-900 bg-white hover:-translate-y-1 transition-all duration-200 ease-in-out">
+            <button
+              onSubmit={handleGoogle}
+              className="p-4  rounded-full border border-solid shadow-xl shadow-slate-300 font-semibold tracking-wider text-slate-900 bg-white hover:-translate-y-1 transition-all duration-200 ease-in-out"
+            >
               <FaGoogle className="text-xl"></FaGoogle>
             </button>
-            <button className="p-4  rounded-full border border-solid shadow-xl shadow-slate-300 font-semibold tracking-wider text-slate-900 bg-white hover:-translate-y-1 transition-all duration-200 ease-in-out">
-              <FaTwitter className="text-xl"></FaTwitter>
+            <button
+              onSubmit={handleGithub}
+              className="p-4  rounded-full border border-solid shadow-xl shadow-slate-300 font-semibold tracking-wider text-slate-900 bg-white hover:-translate-y-1 transition-all duration-200 ease-in-out"
+            >
+              <FaGithub className="text-xl"></FaGithub>
             </button>
           </div>
         </div>

@@ -13,7 +13,15 @@
           >
             <FaSearch></FaSearch>
           </label>
-        </div> */
+        </div> 
+        const handleSearch = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      const search = e.target.value;
+      console.log(search);
+    }
+  };
+        */
 }
 import React from "react";
 

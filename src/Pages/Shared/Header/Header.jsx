@@ -1,19 +1,25 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../../assets/ActionZone.png";
-import { FaSearch, FaBars } from "react-icons/fa";
-import { useState } from "react";
+import { FaSearch, FaBars, FaRegUserCircle } from "react-icons/fa";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
   const [navOpen, setNavOpen] = useState(false);
-  const handleSearch = (e) => {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      const search = e.target.value;
-      console.log(search);
-    }
+  const handleLogout = () => {
+    logOut()
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   };
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setNavOpen(false);
+  }, [location.pathname]);
   const navLink = (
     <>
-      <li className="mr-8 ">
+      <li>
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -23,7 +29,7 @@ const Header = () => {
           Home
         </NavLink>
       </li>
-      <li className="mr-8 ">
+      <li>
         <NavLink
           to="/all-toys"
           className={({ isActive }) =>
@@ -33,27 +39,32 @@ const Header = () => {
           All Toys
         </NavLink>
       </li>
-      <li className="mr-8 ">
-        <NavLink
-          to="/my-toys"
-          className={({ isActive }) =>
-            isActive ? "link-active" : "link-deactive"
-          }
-        >
-          My Toys
-        </NavLink>
-      </li>
-      <li className="mr-8 ">
-        <NavLink
-          to="/add-toys"
-          className={({ isActive }) =>
-            isActive ? "link-active" : "link-deactive"
-          }
-        >
-          Add A Toy
-        </NavLink>
-      </li>
-      <li className="mr-8 ">
+      {user && (
+        <li>
+          <NavLink
+            to="/my-toys"
+            className={({ isActive }) =>
+              isActive ? "link-active" : "link-deactive"
+            }
+          >
+            My Toys
+          </NavLink>
+        </li>
+      )}
+
+      {user && (
+        <li>
+          <NavLink
+            to="/add-toys"
+            className={({ isActive }) =>
+              isActive ? "link-active" : "link-deactive"
+            }
+          >
+            Add A Toy
+          </NavLink>
+        </li>
+      )}
+      <li>
         <NavLink
           to="/blogs"
           className={({ isActive }) =>
@@ -63,14 +74,45 @@ const Header = () => {
           Blogs
         </NavLink>
       </li>
-      <li className="mr-8 ">
-        <NavLink
-          to="/all"
-          className="text-slate-400 px-4 py-3 hover:text-blue-500 font-semibold text-lg border hover:border-blue-500 transition delay-100 ease-in-out"
-        >
-          UserProfile
-        </NavLink>
-      </li>
+      {user ? (
+        user.photoURL ? (
+          <li className="flex flex-col lg:flex-row items-start lg:items-center space-y-4 lg:space-y-0 lg:space-x-4">
+            <div
+              className="tooltip  tooltip-right"
+              data-tip={user?.displayName}
+            >
+              <img
+                src={user.photoURL}
+                alt=""
+                className="h-12 w-12 rounded-full cursor-pointer"
+              />
+            </div>
+            <button onClick={handleLogout} className="login-button">
+              Logout
+            </button>
+          </li>
+        ) : (
+          <li className="flex flex-col lg:flex-row items-start lg:items-center space-y-4 lg:space-y-0 lg:space-x-4">
+            <div className="tooltip tooltip-right" data-tip={user?.displayName}>
+              <FaRegUserCircle className="h-12 w-12 rounded-full cursor-pointer"></FaRegUserCircle>
+            </div>
+            <button onClick={handleLogout} className="login-button">
+              Logout
+            </button>
+          </li>
+        )
+      ) : (
+        <li className="flex">
+          <Link
+            to="login"
+            state={{ from: location }}
+            replace
+            className="login-button"
+          >
+            Login
+          </Link>
+        </li>
+      )}
     </>
   );
   return (
@@ -86,14 +128,14 @@ const Header = () => {
 
         <div className="hidden lg:flex items-end gap-8">
           <nav>
-            <ul className="flex flex-row justify-center items-center">
+            <ul className="flex flex-row justify-center items-center space-x-6">
               {navLink}
             </ul>
           </nav>
         </div>
 
         <button
-          className="px-2 py-1 border border-solid rounded-lg lg:hidden"
+          className="nav-button lg:hidden"
           onClick={() => setNavOpen(!navOpen)}
         >
           <FaBars className="fa-solid fa-bars text-lg"></FaBars>
