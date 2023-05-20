@@ -97,7 +97,7 @@ const ImageGallery = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Image Modal"
-        className="w-full h-screen bg-black bg-opacity-95 flex flex-col justify-center items-center relative scr"
+        className=" w-full h-screen bg-black bg-opacity-95 flex flex-col justify-center items-center relative z-10"
       >
         <div className="absolute top-3 right-3 z-10">
           <button
@@ -107,7 +107,7 @@ const ImageGallery = () => {
             <FaTimes></FaTimes>
           </button>
         </div>
-        <div className="absolute inset-0 flex justify-between items-center px-8 text-4xl font-permanentMarker text-slate-200">
+        <div className="absolute inset-0 flex justify-between items-center px-8 text-4xl font-permanentMarker text-slate-200 ">
           <button onClick={goToNext}>
             <FaRegArrowAltCircleLeft></FaRegArrowAltCircleLeft>
           </button>
