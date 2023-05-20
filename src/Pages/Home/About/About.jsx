@@ -12,8 +12,8 @@ const About = () => {
     });
   }, []);
   return (
-    <div id="about" data-aos="fade-up" data-aos-duration="1000">
-      <div className="custom-container  flex flex-col lg:flex-row  justify-center items-center gap-8">
+    <div id="about">
+      <div className="custom-container  flex flex-col md:flex-row  justify-center items-center gap-8">
         <div className="w-full lg:w-1/2 ">
           <img
             src={img}
@@ -52,7 +52,10 @@ const About = () => {
           >
             <button className="button-primary">Order Now</button>
 
-            <Link to="/" className="button-secondary flex items-center gap-3">
+            <Link
+              to="/all-toys"
+              className="button-secondary flex items-center gap-3"
+            >
               View Products <FaAngleRight></FaAngleRight>
             </Link>
           </div>

@@ -19,11 +19,21 @@ const Home = () => {
       <div data-aos="fade-up" data-aos-duration="1000">
         <Banner></Banner>
       </div>
-      <About></About>
-      <ImageGallery></ImageGallery>
-      <Features></Features>
-      <Products></Products>
-      <Testimonial></Testimonial>
+      <div data-aos="fade-up" data-aos-duration="1000">
+        <About></About>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1000">
+        <ImageGallery></ImageGallery>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1000">
+        <Features></Features>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1000">
+        <Products></Products>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1000">
+        <Testimonial></Testimonial>
+      </div>
     </div>
   );
 };

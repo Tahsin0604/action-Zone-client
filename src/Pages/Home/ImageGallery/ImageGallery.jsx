@@ -53,11 +53,7 @@ const ImageGallery = () => {
   };
 
   return (
-    <div
-      className="custom-container py-10 bg-sky-300 "
-      data-aos="fade-up"
-      data-aos-duration="1000"
-    >
+    <div className="custom-container py-10">
       <h1
         className="section-title"
         data-aos="fade-right"

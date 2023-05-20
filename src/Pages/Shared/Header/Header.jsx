@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/ActionZone.png";
 import { FaSearch, FaBars } from "react-icons/fa";
 import { useState } from "react";
@@ -14,54 +14,75 @@ const Header = () => {
   const navLink = (
     <>
       <li className="mr-8 ">
-        <Link
+        <NavLink
           to="/"
-          className="text-slate-400 px-4 py-3 hover:text-blue-500 font-semibold text-lg border hover:border-blue-500 transition delay-100 ease-in-out"
+          className={({ isActive }) =>
+            isActive ? "link-active" : "link-deactive"
+          }
         >
           Home
-        </Link>
-
-        <Link
-          to="details.html"
-          className="text-slate-400 px-2 py-3 hover:text-blue-500 font-semibold text-lg border hover:border-blue-500 transition delay-100 ease-in-out"
+        </NavLink>
+      </li>
+      <li className="mr-8 ">
+        <NavLink
+          to="/all-toys"
+          className={({ isActive }) =>
+            isActive ? "link-active" : "link-deactive"
+          }
         >
-          Course
-        </Link>
+          All Toys
+        </NavLink>
       </li>
-      <li>
-        <div className="relative">
-          <input
-            type="text"
-            name=""
-            id="search"
-            onKeyDown={handleSearch}
-            className="outline-0 py-3 pl-12 text-lg text-slate-400 w-80 rounded-2xl  bg-white border border-solid "
-          />
-          <label
-            htmlFor="search"
-            className="absolute top-5 left-0 px-4 text-slate-500"
-          >
-            <FaSearch></FaSearch>
-          </label>
-        </div>
+      <li className="mr-8 ">
+        <NavLink
+          to="/my-toys"
+          className={({ isActive }) =>
+            isActive ? "link-active" : "link-deactive"
+          }
+        >
+          My Toys
+        </NavLink>
       </li>
-      <li>
-        <button className="text-white bg-sky-400 hover:bg-sky-500 drop-shadow-2xl rounded-3xl px-9 py-4 delay-100 transition-colors ease-in-out font-semibold">
-          Contact us
-        </button>
+      <li className="mr-8 ">
+        <NavLink
+          to="/add-toys"
+          className={({ isActive }) =>
+            isActive ? "link-active" : "link-deactive"
+          }
+        >
+          Add A Toy
+        </NavLink>
+      </li>
+      <li className="mr-8 ">
+        <NavLink
+          to="/blogs"
+          className={({ isActive }) =>
+            isActive ? "link-active" : "link-deactive"
+          }
+        >
+          Blogs
+        </NavLink>
+      </li>
+      <li className="mr-8 ">
+        <NavLink
+          to="/all"
+          className="text-slate-400 px-4 py-3 hover:text-blue-500 font-semibold text-lg border hover:border-blue-500 transition delay-100 ease-in-out"
+        >
+          UserProfile
+        </NavLink>
       </li>
     </>
   );
   return (
-    <header className=" custom-container py-10 ">
-      <nav className="flex justify-between items-end gap-6">
-        <a href="/" className="cursor-pointer flex gap-3 items-end">
+    <header className=" py-10 ">
+      <nav className="custom-container flex justify-between items-end gap-6">
+        <Link to="/" className="cursor-pointer flex gap-3 items-end">
           <img src={logo} alt="" className="h-16" />
           <h1 className="text-2xl font-bold  text-slate-500 font-bruno tracking-widest">
             <span className="text-sky-600 text-3xl">A</span>
             ction<span className="text-sky-600 text-3xl">Z</span>one
           </h1>
-        </a>
+        </Link>
 
         <div className="hidden lg:flex items-end gap-8">
           <nav>
@@ -80,11 +101,13 @@ const Header = () => {
       </nav>
 
       <div
-        className={`${navOpen ? "flex" : "hidden"} flex-col mt-8 gap-8`}
+        className={`${
+          navOpen ? "flex" : "hidden"
+        } flex-col custom-container mt-8 bg-slate-50`}
         id="mobile-menu"
       >
         <nav>
-          <ul className="flex flex-col gap-5">{navLink}</ul>
+          <ul className="flex flex-col gap-5 py-8">{navLink}</ul>
         </nav>
       </div>
     </header>

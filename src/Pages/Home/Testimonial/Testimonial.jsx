@@ -1,12 +1,28 @@
 import ReactStarRatings from "react-star-ratings";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import "../Testimonial/Testimonial.css";
 import testimonial1 from "../../../assets/img/testimonial/testimonial (1).jpg";
 import testimonial2 from "../../../assets/img/testimonial/testimonial (2).jpg";
 import testimonial3 from "../../../assets/img/testimonial/testimonial (3).jpg";
 const Testimonial = () => {
+  useEffect(() => {
+    AOS.init({
+      once: true,
+    });
+  }, []);
   return (
-    <div className="flex flex-col lg:flex-row justify-center items-center py-10 custom-container gap-7">
-      <div className="h-72 w-80 flex flex-col justify-center pl-6  border rounded-lg shadow-lg">
+    <div
+      id="testimonial"
+      className="flex flex-col md:flex-row justify-center items-center py-10 custom-container gap-7"
+    >
+      <div
+        className="h-72 w-80 flex flex-col justify-center pl-6  border rounded-lg shadow-lg bg-white text-slate-900 "
+        data-aos="fade-up"
+        data-aos-duration="1500"
+        data-aos-delay="200"
+      >
         <div className="space-y-8">
           <ReactStarRatings
             rating={4.5}
@@ -38,7 +54,12 @@ const Testimonial = () => {
           </div>
         </div>
       </div>
-      <div className="h-72 w-80 flex flex-col justify-center pl-6  border rounded-lg shadow-lg">
+      <div
+        className="h-72 w-80 flex flex-col justify-center pl-6  border rounded-lg shadow-lg bg-white text-slate-900 "
+        data-aos="fade-up"
+        data-aos-duration="1600"
+        data-aos-delay="250"
+      >
         <div className="space-y-8">
           <ReactStarRatings
             rating={4.5}
@@ -70,7 +91,12 @@ const Testimonial = () => {
           </div>
         </div>
       </div>
-      <div className="h-72 w-80 flex flex-col justify-center pl-6  border rounded-lg shadow-lg">
+      <div
+        className="h-72 w-80 flex flex-col justify-center pl-6  border rounded-lg shadow-lg bg-white text-slate-900 "
+        data-aos="fade-up"
+        data-aos-duration="1700"
+        data-aos-delay="300"
+      >
         <div className="space-y-8">
           <ReactStarRatings
             rating={4.5}

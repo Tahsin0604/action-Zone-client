@@ -1,6 +1,6 @@
-#about {
+#testimonial {
   position: relative;
-  background-image: url("../../../assets/img/about/aboutCover.jpg");
+  background-image: url("../../../assets/img/testimonial/testimonial.JPG");
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -8,7 +8,7 @@
   z-index: 0;
   color: white;
 }
-#about::before {
+#testimonial::before {
   content: "";
   position: absolute;
   top: 0;

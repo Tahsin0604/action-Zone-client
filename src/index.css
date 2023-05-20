@@ -18,3 +18,14 @@
 .custom-container {
   @apply px-6 md:px-16 lg:px-32;
 }
+
+.link-active,
+.link-deactive {
+  @apply font-spaceMono text-lg [word-spacing:-4px] font-semibold hover:text-sky-500 hover:-translate-y-1;
+}
+.link-active {
+  @apply text-sky-500;
+}
+.link-deactive {
+  @apply text-slate-700;
+}

@@ -26,11 +26,7 @@ const Products = () => {
     "Playsets",
   ];
   return (
-    <div
-      className="custom-container py-14 bg-sky-300"
-      data-aos="fade-up"
-      data-aos-duration="1000"
-    >
+    <div className="custom-container py-14 ">
       <h1
         className="section-title"
         data-aos="fade-right"
@@ -68,8 +64,16 @@ const Products = () => {
           <ShowToy key={toy._id} toy={toy}></ShowToy>
         ))}
       </div>
-      <div className="flex justify-end my-6">
-        <Link to="/" className="button-secondary flex items-center gap-3">
+      <div
+        className="flex justify-end mt-14 mb-4"
+        data-aos="fade-up"
+        data-aos-duration="2200"
+        data-aos-delay="300"
+      >
+        <Link
+          to="/all-toys"
+          className="button-secondary flex items-center gap-3"
+        >
           View More <FaAngleRight></FaAngleRight>
         </Link>
       </div>
