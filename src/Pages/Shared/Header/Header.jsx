@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/ActionZone.png";
+import logo from "../../../assets/ActionZone.png";
 import { FaSearch, FaBars } from "react-icons/fa";
 import { useState } from "react";
 const Header = () => {

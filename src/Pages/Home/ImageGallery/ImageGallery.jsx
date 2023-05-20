@@ -4,14 +4,14 @@ import "aos/dist/aos.css";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import Modal from "react-modal";
 //image
-import img1 from "../../assets/img/gallery/10-blackpanther.jpg";
-import img2 from "../../assets/img/gallery/13-Nightwing.jpg";
-import img3 from "../../assets/img/gallery/17-cat-woman.jpg";
-import img4 from "../../assets/img/gallery/19-luthar.jpg";
-import img5 from "../../assets/img/gallery/2-batman.jpg";
-import img6 from "../../assets/img/gallery/4-wonderwoman.jpg";
-import img7 from "../../assets/img/gallery/6-capptainamerica.jpg";
-import img8 from "../../assets/img/gallery/9-deadpool.jpg";
+import img1 from "../../../assets/img/gallery/10-blackpanther.jpg";
+import img2 from "../../../assets/img/gallery/13-Nightwing.jpg";
+import img3 from "../../../assets/img/gallery/17-cat-woman.jpg";
+import img4 from "../../../assets/img/gallery/19-luthar.jpg";
+import img5 from "../../../assets/img/gallery/2-batman.jpg";
+import img6 from "../../../assets/img/gallery/4-wonderwoman.jpg";
+import img7 from "../../../assets/img/gallery/6-capptainamerica.jpg";
+import img8 from "../../../assets/img/gallery/9-deadpool.jpg";
 
 import {
   FaRegArrowAltCircleLeft,
@@ -53,7 +53,11 @@ const ImageGallery = () => {
   };
 
   return (
-    <div className="custom-container py-10 bg-sky-300 ">
+    <div
+      className="custom-container py-10 bg-sky-300 "
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
       <h1
         className="section-title"
         data-aos="fade-right"

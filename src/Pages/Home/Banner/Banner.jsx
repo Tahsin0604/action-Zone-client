@@ -4,7 +4,16 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 const Banner = () => {
+  useEffect(() => {
+    AOS.init({
+      once: true,
+    });
+  }, []);
   return (
     <Swiper
       // install Swiper modules
@@ -18,6 +27,8 @@ const Banner = () => {
         disableOnInteraction: false,
       }}
       className="py-8 "
+      data-aos="fade-up"
+      data-aos-duration="1000"
     >
       {/* Slider 1 */}
       <SwiperSlide className="py-20 px-12">

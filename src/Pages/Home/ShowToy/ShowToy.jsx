@@ -1,3 +1,4 @@
+import "../ShowToy/ShowToy.css";
 import { Link } from "react-router-dom";
 import ReactStarRatings from "react-star-ratings";
 import AOS from "aos";
@@ -15,12 +16,12 @@ const ShowToy = ({ toy }) => {
       data-aos="zoom-in"
       data-aos-duration="1500"
       data-aos-delay="200"
-      className="flex flex-col rounded-lg  pb-3 bg-white shadow-lg shadow-slate-200 group hover:-translate-y-1"
+      className="show-toy flex flex-col rounded-lg  pb-3 bg-white shadow-lg shadow-slate-200 group "
     >
       <img
         src={picture_url}
         alt=""
-        className="h-72 w-full rounded-t-lg border-b border-solid"
+        className="h-80 md:h-72 w-full rounded-t-lg border-b border-solid"
       />
 
       <div className="flex flex-col px-4 space-y-3 mt-2">

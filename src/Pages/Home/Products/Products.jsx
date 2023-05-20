@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import ShowToy from "./showToy";
+import ShowToy from "../ShowToy/ShowToy";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 const Products = () => {
   const [category, setCategory] = useState("All");
   const [toys, setToys] = useState([]);
@@ -25,7 +26,11 @@ const Products = () => {
     "Playsets",
   ];
   return (
-    <div className="custom-container py-14 bg-sky-300 ">
+    <div
+      className="custom-container py-14 bg-sky-300"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
       <h1
         className="section-title"
         data-aos="fade-right"
@@ -37,16 +42,21 @@ const Products = () => {
       <p
         className="section-paragraph"
         data-aos="fade-left"
-        data-aos-duration="2500"
+        data-aos-duration="2100"
         data-aos-delay="300"
       >
         Various beloved action hero figures and gadgets are avialabe
       </p>
-      <div className="flex flex-wrap  justify-center gap-5">
+      <div
+        className="flex flex-wrap  justify-center gap-5"
+        data-aos="fade-up"
+        data-aos-duration="2200"
+        data-aos-delay="300"
+      >
         {categories.map((item, i) => (
           <button
             key={i}
-            className="category-tab"
+            className="button-secondary"
             onClick={() => setCategory(item)}
           >
             {item}
@@ -59,8 +69,8 @@ const Products = () => {
         ))}
       </div>
       <div className="flex justify-end my-6">
-        <Link to="/" className="category-tab">
-          View More
+        <Link to="/" className="button-secondary flex items-center gap-3">
+          View More <FaAngleRight></FaAngleRight>
         </Link>
       </div>
     </div>
