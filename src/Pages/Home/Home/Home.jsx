@@ -6,6 +6,7 @@ import ImageGallery from "../ImageGallery/ImageGallery";
 import Products from "../Products/Products";
 import About from "../About/About";
 import Features from "../Features/Features";
+import Testimonial from "../Testimonial/Testimonial";
 
 const Home = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const Home = () => {
       <ImageGallery></ImageGallery>
       <Features></Features>
       <Products></Products>
+      <Testimonial></Testimonial>
     </div>
   );
 };
