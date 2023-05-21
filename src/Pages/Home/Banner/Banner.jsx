@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper";
 import "../Banner/Banner.css";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -34,7 +35,14 @@ const Banner = () => {
                 Superman!
               </small>
             </p>
-            <button className=" button-primary">Shop Now</button>
+            <div>
+              <Link
+                to="/toy/6467785d33a0c04d06453f46"
+                className="button-secondary"
+              >
+                View Details
+              </Link>
+            </div>
           </div>
           <div className="w-full md:w-1/2 ">
             <img
@@ -61,7 +69,14 @@ const Banner = () => {
                 points of articulation for dynamic poses.
               </small>
             </p>
-            <button className="button-primary">Shop Now</button>
+            <div>
+              <Link
+                to="/toy/6467785d33a0c04d06453f47"
+                className="button-secondary"
+              >
+                View Details
+              </Link>
+            </div>
           </div>
           <div className="w-full md:w-1/2 ">
             <img
@@ -87,7 +102,14 @@ const Banner = () => {
                 Join the Avengers and save the world from threats!
               </small>
             </p>
-            <button className="button-primary">Shop Now</button>
+            <div>
+              <Link
+                to="/toy/6467785d33a0c04d06453f48"
+                className="button-secondary"
+              >
+                View Details
+              </Link>
+            </div>
           </div>
           <div className="w-full md:w-1/2 ">
             <img
@@ -113,7 +135,14 @@ const Banner = () => {
                 Spider-Man in protecting New York City from villains!
               </small>
             </p>
-            <button className="button-primary">Shop Now</button>
+            <div>
+              <Link
+                to="/toy/6467785d33a0c04d06453f4a"
+                className="button-secondary"
+              >
+                View Details
+              </Link>
+            </div>
           </div>
           <div className="w-full md:w-1/2 ">
             <img

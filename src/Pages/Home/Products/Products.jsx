@@ -13,7 +13,6 @@ const Products = () => {
     });
   }, []);
   useEffect(() => {
-    console.log(category);
     fetch(`http://localhost:3000/toys/${category}`)
       .then((res) => res.json())
       .then((data) => setToys(data));

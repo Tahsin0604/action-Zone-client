@@ -10,7 +10,7 @@ const ShowToy = ({ toy }) => {
       once: true,
     });
   }, []);
-  const { picture_url, name, price, rating } = toy;
+  const { _id, picture_url, name, price, rating } = toy;
   return (
     <div
       data-aos="zoom-in"
@@ -43,7 +43,7 @@ const ShowToy = ({ toy }) => {
           name="rating"
         />
         <Link
-          to="/"
+          to={`/toy/${_id}`}
           className="font-spaceMono px-2 py-1 bg-blue-300 hover:bg-blue-400 text-white rounded-lg transition-all duration-200 ease-in-out"
         >
           Details

@@ -19,7 +19,6 @@ const Register = () => {
   const [error, setError] = useState("");
   const location = useLocation();
   const from = location.state?.from || "/";
-  console.log(from);
   const navigate = useNavigate();
   //form submit
   const handleForm = (e) => {
@@ -50,9 +49,7 @@ const Register = () => {
             navigate(from, { replace: true });
             form.reset();
           })
-          .catch((error) => {
-            console.log(error);
-          });
+          .catch((error) => {});
       })
       .catch((err) => setError(err.message));
   };
