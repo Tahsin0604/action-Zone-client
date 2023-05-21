@@ -5,25 +5,35 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 const Products = () => {
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState("Best Selling");
+  const [subCategory, setsSubCategory] = useState([]);
+  const [selectedSubCategory, setSelectedSubCategory] = useState("all");
   const [toys, setToys] = useState([]);
+
   useEffect(() => {
     AOS.init({
       once: true,
     });
   }, []);
+
   useEffect(() => {
-    fetch(`http://localhost:3000/toys/${category}`)
+    fetch(`http://localhost:3000/${category}`)
+      .then((res) => res.json())
+      .then((data) => setsSubCategory(data.subcategories));
+  }, [category]);
+
+  useEffect(() => {
+    fetch(
+      `http://localhost:3000/toys/${category}?subCategory=${selectedSubCategory}`
+    )
       .then((res) => res.json())
       .then((data) => setToys(data));
-  }, [category]);
-  const categories = [
-    "All",
-    "Action Figures",
-    "Collectible Statues",
-    "Transforming Figures",
-    "Playsets",
-  ];
+  }, [category, selectedSubCategory]);
+  const handleCategory = (item) => {
+    setSelectedSubCategory("all");
+    setCategory(item);
+  };
+  const categories = ["Best Selling", "Fan Favourite", "Top Rated"];
   return (
     <div className="custom-container py-14 ">
       <h1
@@ -42,8 +52,9 @@ const Products = () => {
       >
         Various beloved action hero figures and gadgets are avialabe
       </p>
+      {/* Categories */}
       <div
-        className="flex flex-wrap  justify-center gap-5"
+        className="flex flex-wrap  justify-center gap-5 pb-6 border-b border-solid "
         data-aos="fade-up"
         data-aos-duration="2200"
         data-aos-delay="300"
@@ -52,7 +63,23 @@ const Products = () => {
           <button
             key={i}
             className="button-secondary"
-            onClick={() => setCategory(item)}
+            onClick={() => handleCategory(item)}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+      <div
+        className="flex flex-wrap  justify-center gap-5 mt-6"
+        data-aos="fade-up"
+        data-aos-duration="2200"
+        data-aos-delay="300"
+      >
+        {subCategory.map((item, i) => (
+          <button
+            key={i}
+            className="button-primary"
+            onClick={() => setSelectedSubCategory(item)}
           >
             {item}
           </button>
