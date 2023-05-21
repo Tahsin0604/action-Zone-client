@@ -41,12 +41,13 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/edit-toys",
+        path: "edit-toys/:id",
         element: (
           <PrivateRoutes>
             <EditToys></EditToys>
           </PrivateRoutes>
         ),
+        loader: ({ params }) => fetch(`http://localhost:3000/toy/${params.id}`),
       },
       {
         path: "/blogs",
