@@ -36,6 +36,11 @@ const MyToys = () => {
     });
   }, [currentPage]);
 
+  const updateToyList = (id) => {
+    const remaining = toys.filter((toy) => toy._id !== id);
+    setToys(remaining);
+  };
+
   const handleSearch = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
@@ -79,7 +84,11 @@ const MyToys = () => {
           {toys.length ? (
             <tbody>
               {toys.map((toy) => (
-                <MyToysRow key={toy._id} toy={toy}></MyToysRow>
+                <MyToysRow
+                  key={toy._id}
+                  toy={toy}
+                  updateToyList={updateToyList}
+                ></MyToysRow>
               ))}
             </tbody>
           ) : (

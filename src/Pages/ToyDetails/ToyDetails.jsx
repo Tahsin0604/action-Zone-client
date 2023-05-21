@@ -39,41 +39,39 @@ const ToyDetails = () => {
           >
             <div className="max-w-xl space-y-5 mx-auto">
               <div className="flex space-x-5 ">
-                <h1 className="font-bruno text-lg font-bold">Name :</h1>
+                <h1 className="font-bruno text-lg font-bold">Name:</h1>
                 <h1 className="font-permanentMarker text-xl font-semibold tracking-wider">
                   {name}
                 </h1>
               </div>
               <div className="flex space-x-5 ">
-                <h1 className="font-bruno text-lg font-bold">Seller Name :</h1>
+                <h1 className="font-bruno text-lg font-bold">Seller Name:</h1>
                 <h1 className="text-xl font-semibold">{seller_name}</h1>
               </div>
               <div className="flex space-x-5 ">
-                <h1 className="font-bruno text-lg font-bold">Seller Email :</h1>
+                <h1 className="font-bruno text-lg font-bold">Seller Email:</h1>
                 <h1 className="text-xl font-semibold">{seller_email}</h1>
               </div>
               <div className="flex space-x-5 ">
-                <h1 className="font-bruno text-lg font-bold">Category :</h1>
+                <h1 className="font-bruno text-lg font-bold">Category:</h1>
                 <h1 className="text-xl font-semibold">{sub_category}</h1>
               </div>
               <div className="flex space-x-5 ">
-                <h1 className="font-bruno text-lg font-bold">Price :</h1>
+                <h1 className="font-bruno text-lg font-bold">Price:</h1>
                 <h1 className="text-xl font-semibold">{price}</h1>
               </div>
               <div className="flex space-x-5 ">
-                <h1 className="font-bruno text-lg font-bold">Rating :</h1>
+                <h1 className="font-bruno text-lg font-bold">Rating:</h1>
                 <h1 className="text-xl font-semibold">{rating}</h1>
               </div>
               <div className="flex space-x-5 ">
                 <h1 className="font-bruno text-lg font-bold">
-                  Available Quantity :
+                  Available Quantity:
                 </h1>
                 <h1 className="text-xl font-semibold">{available_quantity}</h1>
               </div>
-              <div className="flex ">
-                <h1 className="font-bruno text-lg font-bold w-full">
-                  Description :
-                </h1>
+              <div className="flex space-x-5">
+                <h1 className="font-bruno text-lg font-bold">Description:</h1>
                 <p className="text-xl font-semibold">{description}</p>
               </div>
             </div>
