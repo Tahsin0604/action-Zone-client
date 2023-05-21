@@ -12,6 +12,7 @@ const ToyDetails = () => {
     rating,
     seller_email,
     seller_name,
+    category,
     sub_category,
     _id,
   } = toy;
@@ -54,6 +55,10 @@ const ToyDetails = () => {
               </div>
               <div className="flex space-x-5 ">
                 <h1 className="font-bruno text-lg font-bold">Category:</h1>
+                <h1 className="text-xl font-semibold">{category}</h1>
+              </div>
+              <div className="flex space-x-5 ">
+                <h1 className="font-bruno text-lg font-bold">Sub-category:</h1>
                 <h1 className="text-xl font-semibold">{sub_category}</h1>
               </div>
               <div className="flex space-x-5 ">

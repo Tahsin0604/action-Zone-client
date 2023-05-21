@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -14,9 +14,17 @@ const UpdateToy = () => {
     picture_url,
     price,
     rating,
+    category,
     sub_category,
   } = toy;
-  const [select, setSelect] = useState(sub_category);
+  const [selectedCategory, setSelectedCategory] = useState(category);
+  const [subCategory, setsSubCategory] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:3000/category/${selectedCategory}`)
+      .then((res) => res.json())
+      .then((data) => setsSubCategory(data.subcategories));
+  }, [selectedCategory]);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(sub_category);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -35,7 +43,8 @@ const UpdateToy = () => {
       name: name,
       seller_name: userName,
       seller_email: userEmail,
-      sub_category: category,
+      category: category,
+      sub_category: subCategory,
       price: price,
       rating: rating,
       available_quantity: quantity,
@@ -110,13 +119,30 @@ const UpdateToy = () => {
           <select
             className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md "
             name="category"
-            defaultValue={select}
-            onChange={(e) => setSelect(e.target.value)}
+            defaultValue={selectedCategory}
+            required
+            onChange={(e) => setSelectedCategory(e.target.value)}
           >
-            <option>Action Figures</option>
-            <option>Collectible Statues</option>
-            <option>Transforming Figures</option>
-            <option>Playsets</option>
+            <option>Best Selling</option>
+            <option>Fan Favourite</option>
+            <option>Top Rated</option>
+          </select>
+        </div>
+        {/* subcategory */}
+        <div className="flex flex-col space-y-2">
+          <label>
+            <span className=" font-spaceMono">Sub-category</span>
+          </label>
+          <select
+            className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md "
+            name="subCategory"
+            defaultValue={selectedSubCategory}
+            required
+            onChange={(e) => setSelectedSubCategory(e.target.value)}
+          >
+            {subCategory.map((item, i) => (
+              <option key={i}>{item}</option>
+            ))}
           </select>
         </div>
 

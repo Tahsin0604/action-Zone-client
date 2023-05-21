@@ -31,10 +31,10 @@ const MyToysRow = ({ toy, updateToyList }) => {
   };
   return (
     <tr>
-      <td className="text-start font-spaceMono">{name}</td>
-      <td className="text-start font-spaceMono">{sub_category}</td>
-      <td className="text-start font-spaceMono">${price}</td>
-      <td className="text-start font-spaceMono">
+      <td className="text-start font-spaceMono text-sm">{name}</td>
+      <td className="text-start font-spaceMono text-sm">{sub_category}</td>
+      <td className="text-start font-spaceMono text-sm">${price}</td>
+      <td className="text-start font-spaceMono text-sm">
         <p className="flex items-center gap-2">
           <FaStar></FaStar>
           {rating}

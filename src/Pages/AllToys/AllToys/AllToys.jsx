@@ -7,6 +7,7 @@ const AllToys = () => {
   const [toys, setToys] = useState([]);
   const [sort, setSort] = useState("");
   const { totalProducts } = useLoaderData();
+  console.log(totalProducts);
   const [currentPage, setCurrentPage] = useState(0);
   const totalPages = Math.ceil(totalProducts / 20);
   const pageNumbers = [...Array(totalPages).keys()];

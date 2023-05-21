@@ -17,7 +17,7 @@ const Products = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/${category}`)
+    fetch(`http://localhost:3000/category/${category}`)
       .then((res) => res.json())
       .then((data) => setsSubCategory(data.subcategories));
   }, [category]);
