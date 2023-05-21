@@ -53,13 +53,19 @@ const AddToy = () => {
     <div className="custom-container py-16">
       <h1
         className="section-title mb-8"
-        data-aos="fade-up"
+        data-aos="fade-left"
         data-aos-duration="1500"
         data-aos-delay="200"
       >
         Add a new Toy !
       </h1>
-      <form onSubmit={handleInsert} className="max-w-lg space-y-5 mx-auto">
+      <form
+        onSubmit={handleInsert}
+        className="max-w-lg space-y-5 mx-auto"
+        data-aos="fade-right"
+        data-aos-duration="1500"
+        data-aos-delay="200"
+      >
         {/* name */}
         <div className="flex flex-col space-y-2">
           <label>

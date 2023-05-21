@@ -7,13 +7,17 @@ import { FaSearch } from "react-icons/fa";
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
+  const [sort, setSort] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
+  const [pagination, setPagination] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:3000/total-products?email=${user?.email}`)
+    fetch(`http://localhost:3000/total-products/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data?.totalProducts) {
+          console.log(data);
           const value = data.totalProducts;
           setTotalProducts(value);
         }
@@ -24,7 +28,7 @@ const MyToys = () => {
   const pageNumbers = [...Array(totalPages).keys()];
   useEffect(() => {
     fetch(
-      `http://localhost:3000/toys?email=${user?.email}&page=${currentPage}&limit=20`
+      `http://localhost:3000/toys?email=${user?.email}&page=${currentPage}&limit=20&sort=${sort}`
     )
       .then((res) => res.json())
       .then((data) => setToys(data));
@@ -34,7 +38,7 @@ const MyToys = () => {
       left: 0,
       behavior: "smooth", // Use 'auto' for instant scrolling without smooth animation
     });
-  }, [currentPage]);
+  }, [currentPage, sort]);
 
   const updateToyList = (id) => {
     const remaining = toys.filter((toy) => toy._id !== id);
@@ -48,19 +52,25 @@ const MyToys = () => {
       fetch(`http://localhost:3000/toySearchByName/${search}`)
         .then((res) => res.json())
         .then((data) => setToys(data));
+      setPagination(false);
     }
   };
 
   const handleSelect = (e) => {
     const options = e.target.value;
-
-    const sort = options.split(" ")[0].toLowerCase();
-    fetch(`http://localhost:3000/toys?email=${user?.email}&sort=${sort}`)
-      .then((res) => res.json())
-      .then((data) => setToys(data));
+    const sortOperation = options.split(" ")[0].toLowerCase();
+    console.log(sortOperation);
+    setSort(sortOperation);
+    setCurrentPage(0);
+    setPagination(true);
   };
   return (
-    <div className="custom-container min-h-[calc(100vh-500px)]">
+    <div
+      className="custom-container min-h-[calc(100vh-500px)]"
+      data-aos="fade-up"
+      data-aos-duration="1500"
+      data-aos-delay="200"
+    >
       <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 my-4">
         <div className="relative ">
           <input
@@ -120,21 +130,23 @@ const MyToys = () => {
             </tbody>
           )}
         </table>
-        <div className="text-center">
-          {pageNumbers.map((number) => (
-            <button
-              key={number}
-              onClick={() => setCurrentPage(number)}
-              className={`py-1 px-3 border rounded-lg shadow-lg hover:bg-sky-300 font-spaceMono  ${
-                currentPage === number
-                  ? "bg-sky-200 text-white"
-                  : " text-slate-600"
-              }`}
-            >
-              {number + 1}
-            </button>
-          ))}
-        </div>
+        {pagination && (
+          <div className="text-center">
+            {pageNumbers.map((number) => (
+              <button
+                key={number}
+                onClick={() => setCurrentPage(number)}
+                className={`py-1 px-3 border rounded-lg shadow-lg hover:bg-sky-300 font-spaceMono  ${
+                  currentPage === number
+                    ? "bg-sky-200 text-white"
+                    : " text-slate-600"
+                }`}
+              >
+                {number + 1}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

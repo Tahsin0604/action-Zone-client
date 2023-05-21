@@ -6,6 +6,11 @@ import { Autoplay, Navigation } from "swiper";
 import "../Banner/Banner.css";
 import { Link } from "react-router-dom";
 
+import banner1 from "../../../assets/img/slidder/slidder (1).jpg";
+import banner2 from "../../../assets/img/slidder/slidder (2).jpg";
+import banner3 from "../../../assets/img/slidder/slidder (3).jpg";
+import banner4 from "../../../assets/img/slidder/slidder (4).jpg";
+
 const Banner = () => {
   return (
     <Swiper
@@ -45,11 +50,7 @@ const Banner = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 ">
-            <img
-              src="https://i.ibb.co/YDb93yX/1-superman.jpg"
-              alt=""
-              className="w-96 h-96 mx-auto"
-            />
+            <img src={banner1} alt="" className="w-96 h-96 mx-auto" />
           </div>
         </div>
       </SwiperSlide>
@@ -79,11 +80,7 @@ const Banner = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 ">
-            <img
-              src="https://i.ibb.co/1zpWkbF/2-batman.jpg"
-              alt=""
-              className="w-96 h-96 mx-auto"
-            />
+            <img src={banner2} alt="" className="w-96 h-96 mx-auto" />
           </div>
         </div>
       </SwiperSlide>
@@ -112,11 +109,7 @@ const Banner = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 ">
-            <img
-              src="https://i.ibb.co/3Fr72vz/3-iron-man.jpg"
-              alt=""
-              className="w-96 h-96 mx-auto"
-            />
+            <img src={banner3} alt="" className="w-96 h-96 mx-auto" />
           </div>
         </div>
       </SwiperSlide>
@@ -145,11 +138,7 @@ const Banner = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 ">
-            <img
-              src="https://i.ibb.co/NT84yPp/5-spiderman.jpg"
-              alt=""
-              className="w-96 h-96 mx-auto"
-            />
+            <img src={banner4} alt="" className="w-96 h-96 mx-auto" />
           </div>
         </div>
       </SwiperSlide>
