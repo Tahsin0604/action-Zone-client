@@ -18,7 +18,7 @@ const MyToysRow = ({ toy }) => {
       <th>
         <div className="flex items-center gap-2">
           <Link
-            to={`/edit-toys/${_id}`}
+            to={`/update-toy/${_id}`}
             className="font-bruno text-base px-2 py-1 rounded-lg border border-solid border-sky-700 shadow-lg font-semibold tracking-wider text-slate-900 bg-white hover:-translate-y-1 transition-all duration-200 ease-in-out"
             title="Update Item"
           >
