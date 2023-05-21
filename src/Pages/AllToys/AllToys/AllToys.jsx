@@ -32,7 +32,9 @@ const AllToys = () => {
     if (e.keyCode === 13) {
       e.preventDefault();
       const search = e.target.value;
-      console.log(search);
+      fetch(`http://localhost:3000/toySearchByName/${search}`)
+        .then((res) => res.json())
+        .then((data) => setToys(data));
     }
   };
   return (

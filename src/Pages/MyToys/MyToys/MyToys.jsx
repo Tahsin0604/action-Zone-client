@@ -45,10 +45,20 @@ const MyToys = () => {
     if (e.keyCode === 13) {
       e.preventDefault();
       const search = e.target.value;
-      console.log(search);
+      fetch(`http://localhost:3000/toySearchByName/${search}`)
+        .then((res) => res.json())
+        .then((data) => setToys(data));
     }
   };
 
+  const handleSelect = (e) => {
+    const options = e.target.value;
+
+    const sort = options.split(" ")[0].toLowerCase();
+    fetch(`http://localhost:3000/toys?email=${user?.email}&sort=${sort}`)
+      .then((res) => res.json())
+      .then((data) => setToys(data));
+  };
   return (
     <div className="custom-container min-h-[calc(100vh-500px)]">
       <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 my-4">
@@ -66,6 +76,17 @@ const MyToys = () => {
           >
             <FaSearch></FaSearch>
           </label>
+        </div>
+        <div>
+          <select
+            className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md "
+            name="category"
+            onChange={handleSelect}
+          >
+            <option>Default</option>
+            <option>Asc ($ Price)</option>
+            <option>Desc ($ Price)</option>
+          </select>
         </div>
       </div>
       <div className="overflow-x-auto">
