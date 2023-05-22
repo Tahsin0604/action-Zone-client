@@ -36,6 +36,7 @@ const UpdateToy = () => {
     const name = form.name.value;
     const photo = form.photo.value;
     const category = form.category.value;
+    const subCategory = form.subCategory.value;
     const price = parseInt(form.price.value);
     const rating = parseFloat(form.rating.value);
     const quantity = parseInt(form.quantity.value);
