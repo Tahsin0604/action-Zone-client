@@ -19,7 +19,7 @@ const ToyDetails = () => {
   } = toy;
   useWebTitle(`${name}`);
   return (
-    <div className="custom-container">
+    <div className="custom-container overflow-x-hidden">
       <div className="flex flex-col md:flex-row justify-between items-center gap-16 md:gap-6">
         <div
           className="w-full md:w-1/2"

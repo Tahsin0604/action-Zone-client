@@ -42,7 +42,7 @@ const Banner = () => {
             </p>
             <div>
               <Link
-                to="/toy/6467785d33a0c04d06453f46"
+                to="/toy/646a2ba533a0c04d067f5365"
                 className="button-secondary"
               >
                 View Details
@@ -72,7 +72,7 @@ const Banner = () => {
             </p>
             <div>
               <Link
-                to="/toy/6467785d33a0c04d06453f47"
+                to="/toy/646a2ba533a0c04d067f5366"
                 className="button-secondary"
               >
                 View Details
@@ -101,7 +101,7 @@ const Banner = () => {
             </p>
             <div>
               <Link
-                to="/toy/6467785d33a0c04d06453f48"
+                to="/toy/646a2ba533a0c04d067f5367"
                 className="button-secondary"
               >
                 View Details
@@ -130,7 +130,7 @@ const Banner = () => {
             </p>
             <div>
               <Link
-                to="/toy/6467785d33a0c04d06453f4a"
+                to="/toy/646a2ba533a0c04d067f5369"
                 className="button-secondary"
               >
                 View Details

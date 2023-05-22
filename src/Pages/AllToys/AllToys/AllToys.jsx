@@ -52,7 +52,7 @@ const AllToys = () => {
 
   return (
     <div
-      className="custom-container min-h-[calc(100vh-500px)] "
+      className="custom-container min-h-[calc(100vh-500px)] overflow-x-hidden"
       data-aos="fade-up"
       data-aos-duration="1500"
       data-aos-delay="200"

@@ -74,7 +74,7 @@ const UpdateToy = () => {
       });
   };
   return (
-    <div className="custom-container py-16">
+    <div className="custom-container py-16 overflow-x-hidden">
       <h1
         className="section-title mb-8"
         data-aos="fade-right"
