@@ -1,4 +1,4 @@
-# **This A Comics and Anime toy Web shpl**
+# **This A Comics and Anime toy Web shop**
 
 ---
 
