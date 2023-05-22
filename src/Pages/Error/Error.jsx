@@ -3,7 +3,9 @@ import errorImg from "../../assets/img/error/error.jpg";
 import { Link, useRouteError } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useWebTitle } from "../../hooks/useWebTitle";
 const Error = () => {
+  useWebTitle("Error Page");
   useEffect(() => {
     AOS.init({
       once: true,

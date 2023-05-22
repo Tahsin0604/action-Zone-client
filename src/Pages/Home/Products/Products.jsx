@@ -17,14 +17,19 @@ const Products = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/category/${category}`)
+    fetch(
+      `https://toy-marketplace-server-eta-weld.vercel.app/category/${category}`
+    )
       .then((res) => res.json())
-      .then((data) => setsSubCategory(data.subcategories));
+      .then((data) => {
+        console.log(data);
+        setsSubCategory(data.subcategories);
+      });
   }, [category]);
 
   useEffect(() => {
     fetch(
-      `http://localhost:3000/toys/${category}?subCategory=${selectedSubCategory}`
+      `https://toy-marketplace-server-eta-weld.vercel.app/toys/${category}?subCategory=${selectedSubCategory}`
     )
       .then((res) => res.json())
       .then((data) => setToys(data));

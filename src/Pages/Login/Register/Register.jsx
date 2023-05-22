@@ -4,18 +4,20 @@ import "aos/dist/aos.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import register from "../../../assets/img/login/login.jpg";
 import React from "react";
-import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import { useWebTitle } from "../../../hooks/useWebTitle";
 
 const Register = () => {
+  useWebTitle("Register");
   useEffect(() => {
     AOS.init({
       once: true,
     });
   }, []);
 
-  const { createUser, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const { createUser, googleSignIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const location = useLocation();
   const from = location.state?.from || "/";
@@ -63,16 +65,6 @@ const Register = () => {
       .catch((err) => setError(err.message));
   };
 
-  // github button handler
-  const handleGithub = () => {
-    githubSignIn()
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-        navigate(from, { replace: true });
-      })
-      .catch((err) => setError(err.message));
-  };
   return (
     <div className="custom-container py-16">
       <h1
@@ -211,16 +203,10 @@ const Register = () => {
             data-aos-delay="200"
           >
             <button
-              onSubmit={handleGoogle}
+              onClick={handleGoogle}
               className="p-4  rounded-full border border-solid shadow-xl shadow-slate-300 font-semibold tracking-wider text-slate-900 bg-white hover:-translate-y-1 transition-all duration-200 ease-in-out"
             >
               <FaGoogle className="text-xl"></FaGoogle>
-            </button>
-            <button
-              onSubmit={handleGithub}
-              className="p-4  rounded-full border border-solid shadow-xl shadow-slate-300 font-semibold tracking-wider text-slate-900 bg-white hover:-translate-y-1 transition-all duration-200 ease-in-out"
-            >
-              <FaGithub className="text-xl"></FaGithub>
             </button>
           </div>
         </div>

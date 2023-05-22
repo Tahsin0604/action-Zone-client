@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 const MyToysRow = ({ toy, updateToyList }) => {
   const { _id, name, sub_category, price, rating, available_quantity } = toy;
   const handleDelete = (id) => {
-    console.log(id);
-    fetch(`http://localhost:3000/toy/${id}`, {
+    fetch(`https://toy-marketplace-server-eta-weld.vercel.app/toy/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

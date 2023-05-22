@@ -1,11 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { useWebTitle } from "../../hooks/useWebTitle";
 const AddToy = () => {
+  useWebTitle("Add new toy");
   const [selectedCategory, setSelectedCategory] = useState("Best Selling");
   const [subCategory, setsSubCategory] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3000/category/${selectedCategory}`)
+    fetch(
+      `https://toy-marketplace-server-eta-weld.vercel.app/category/${selectedCategory}`
+    )
       .then((res) => res.json())
       .then((data) => setsSubCategory(data.subcategories));
   }, [selectedCategory]);
@@ -40,7 +44,7 @@ const AddToy = () => {
       description: description,
     };
     console.log(newToy);
-    fetch("http://localhost:3000/toy", {
+    fetch("https://toy-marketplace-server-eta-weld.vercel.app/toy", {
       method: "POST",
       headers: {
         "content-type": "application/json",

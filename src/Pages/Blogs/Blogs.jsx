@@ -1,6 +1,8 @@
 import React from "react";
+import { useWebTitle } from "../../hooks/useWebTitle";
 
 const Blogs = () => {
+  useWebTitle("Blogs");
   return (
     <div className="custom-container py-6 space-y-6">
       <div className="space-y-3">

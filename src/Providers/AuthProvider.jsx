@@ -20,9 +20,6 @@ const AuthProvider = ({ children }) => {
   //google Auth
   const GoogleProvider = new GoogleAuthProvider();
 
-  //github Auth
-  const GithubProvider = new GithubAuthProvider();
-
   //   create user with email and password
   const createUser = (email, password) => {
     setLoading(true);
@@ -39,12 +36,6 @@ const AuthProvider = ({ children }) => {
   const googleSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, GoogleProvider);
-  };
-
-  // github SignIn
-  const githubSignIn = () => {
-    setLoading(true);
-    return signInWithPopup(auth, GithubProvider);
   };
 
   //LogOut
@@ -66,7 +57,6 @@ const AuthProvider = ({ children }) => {
     createUser,
     loginUser,
     googleSignIn,
-    githubSignIn,
     logOut,
   };
   return (

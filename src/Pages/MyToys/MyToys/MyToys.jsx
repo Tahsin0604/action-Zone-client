@@ -3,8 +3,10 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import { set } from "lodash";
 import MyToysRow from "../MyToysRow/MyToysRow";
 import { FaSearch } from "react-icons/fa";
+import { useWebTitle } from "../../../hooks/useWebTitle";
 
 const MyToys = () => {
+  useWebTitle("My toys");
   const { user } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
   const [sort, setSort] = useState("");
@@ -12,7 +14,9 @@ const MyToys = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const [pagination, setPagination] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:3000/total-products/${user?.email}`)
+    fetch(
+      `https://toy-marketplace-server-eta-weld.vercel.app/total-products/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -28,7 +32,7 @@ const MyToys = () => {
   const pageNumbers = [...Array(totalPages).keys()];
   useEffect(() => {
     fetch(
-      `http://localhost:3000/toys?email=${user?.email}&page=${currentPage}&limit=20&sort=${sort}`
+      `https://toy-marketplace-server-eta-weld.vercel.app/toys?email=${user?.email}&page=${currentPage}&limit=20&sort=${sort}`
     )
       .then((res) => res.json())
       .then((data) => setToys(data));
@@ -49,7 +53,9 @@ const MyToys = () => {
     if (e.keyCode === 13) {
       e.preventDefault();
       const search = e.target.value;
-      fetch(`http://localhost:3000/toySearchByName/${search}`)
+      fetch(
+        `https://toy-marketplace-server-eta-weld.vercel.app/toySearchByName/${search}`
+      )
         .then((res) => res.json())
         .then((data) => setToys(data));
       setPagination(false);

@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import { useWebTitle } from "../../hooks/useWebTitle";
 
 const ToyDetails = () => {
   const toy = useLoaderData();
@@ -16,6 +17,7 @@ const ToyDetails = () => {
     sub_category,
     _id,
   } = toy;
+  useWebTitle(`${name}`);
   return (
     <div className="custom-container">
       <div className="flex flex-col md:flex-row justify-between items-center gap-16 md:gap-6">

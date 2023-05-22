@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import ToysRow from "../ToysRow/ToysRow";
 import { FaSearch } from "react-icons/fa";
+import { useWebTitle } from "../../../hooks/useWebTitle";
 
 const AllToys = () => {
+  useWebTitle("Show all toys");
   const [toys, setToys] = useState([]);
   const [sort, setSort] = useState("");
   const { totalProducts } = useLoaderData();
@@ -14,7 +16,7 @@ const AllToys = () => {
   const [pagination, setPagination] = useState(true);
   useEffect(() => {
     fetch(
-      `http://localhost:3000/toys?page=${currentPage}&limit=20&sort=${sort}`
+      `https://toy-marketplace-server-eta-weld.vercel.app/toys?page=${currentPage}&limit=20&sort=${sort}`
     )
       .then((res) => res.json())
       .then((data) => setToys(data));
@@ -30,7 +32,9 @@ const AllToys = () => {
     if (e.keyCode === 13) {
       e.preventDefault();
       const search = e.target.value;
-      fetch(`http://localhost:3000/toySearchByName/${search}`)
+      fetch(
+        `https://toy-marketplace-server-eta-weld.vercel.app/toySearchByName/${search}`
+      )
         .then((res) => res.json())
         .then((data) => setToys(data));
       setPagination(false);

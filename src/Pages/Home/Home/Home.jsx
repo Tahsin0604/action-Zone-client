@@ -7,8 +7,10 @@ import Products from "../Products/Products";
 import About from "../About/About";
 import Features from "../Features/Features";
 import Testimonial from "../Testimonial/Testimonial";
+import { useWebTitle } from "../../../hooks/useWebTitle";
 
 const Home = () => {
+  useWebTitle("Home");
   useEffect(() => {
     AOS.init({
       once: true,

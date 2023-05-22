@@ -4,17 +4,19 @@ import "aos/dist/aos.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../../../assets/img/login/login.jpg";
 import React from "react";
-import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import { useWebTitle } from "../../../hooks/useWebTitle";
 
 const Login = () => {
+  useWebTitle("Login");
   useEffect(() => {
     AOS.init({
       once: true,
     });
   }, []);
 
-  const { loginUser, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const { loginUser, googleSignIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const location = useLocation();
   const from = location.state?.from?.pathname || location.state?.from || "/";
@@ -39,17 +41,6 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         const loggedUser = result.user;
-        navigate(from, { replace: true });
-      })
-      .catch((err) => setError(err.message));
-  };
-
-  // github button handler
-  const handleGithub = () => {
-    githubSignIn()
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
         navigate(from, { replace: true });
       })
       .catch((err) => setError(err.message));
@@ -151,12 +142,6 @@ const Login = () => {
               className="p-4  rounded-full border border-solid shadow-xl shadow-slate-300 font-semibold tracking-wider text-slate-900 bg-white hover:-translate-y-1 transition-all duration-200 ease-in-out"
             >
               <FaGoogle className="text-xl"></FaGoogle>
-            </button>
-            <button
-              onClick={handleGithub}
-              className="p-4  rounded-full border border-solid shadow-xl shadow-slate-300 font-semibold tracking-wider text-slate-900 bg-white hover:-translate-y-1 transition-all duration-200 ease-in-out"
-            >
-              <FaGithub className="text-xl"></FaGithub>
             </button>
           </div>
         </div>

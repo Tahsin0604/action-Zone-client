@@ -26,7 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/all-toys",
         element: <AllToys></AllToys>,
-        loader: () => fetch("http://localhost:3000/total-products"),
+        loader: () =>
+          fetch(
+            "https://toy-marketplace-server-eta-weld.vercel.app/total-products"
+          ),
       },
       {
         path: "/my-toys",
@@ -51,7 +54,10 @@ const router = createBrowserRouter([
             <UpdateToy></UpdateToy>
           </PrivateRoutes>
         ),
-        loader: ({ params }) => fetch(`http://localhost:3000/toy/${params.id}`),
+        loader: ({ params }) =>
+          fetch(
+            `https://toy-marketplace-server-eta-weld.vercel.app/toy/${params.id}`
+          ),
       },
       {
         path: "toy/:id",
@@ -60,7 +66,10 @@ const router = createBrowserRouter([
             <ToyDetails></ToyDetails>
           </PrivateRoutes>
         ),
-        loader: ({ params }) => fetch(`http://localhost:3000/toy/${params.id}`),
+        loader: ({ params }) =>
+          fetch(
+            `https://toy-marketplace-server-eta-weld.vercel.app/toy/${params.id}`
+          ),
       },
       {
         path: "/blogs",

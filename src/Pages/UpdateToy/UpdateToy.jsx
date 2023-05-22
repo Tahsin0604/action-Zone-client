@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { useWebTitle } from "../../hooks/useWebTitle";
 
 const UpdateToy = () => {
   const { user } = useContext(AuthContext);
@@ -17,10 +18,13 @@ const UpdateToy = () => {
     category,
     sub_category,
   } = toy;
+  useWebTitle(`Update - ${name}`);
   const [selectedCategory, setSelectedCategory] = useState(category);
   const [subCategory, setsSubCategory] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3000/category/${selectedCategory}`)
+    fetch(
+      `https://toy-marketplace-server-eta-weld.vercel.app/category/${selectedCategory}`
+    )
       .then((res) => res.json())
       .then((data) => setsSubCategory(data.subcategories));
   }, [selectedCategory]);
@@ -50,7 +54,7 @@ const UpdateToy = () => {
       available_quantity: quantity,
       description: description,
     };
-    fetch(`http://localhost:3000/toy/${_id}`, {
+    fetch(`https://toy-marketplace-server-eta-weld.vercel.app/toy/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
