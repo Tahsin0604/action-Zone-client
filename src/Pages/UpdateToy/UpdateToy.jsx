@@ -20,15 +20,18 @@ const UpdateToy = () => {
   } = toy;
   useWebTitle(`Update - ${name}`);
   const [selectedCategory, setSelectedCategory] = useState(category);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(sub_category);
   const [subCategory, setsSubCategory] = useState([]);
   useEffect(() => {
     fetch(
       `https://toy-marketplace-server-eta-weld.vercel.app/category/${selectedCategory}`
     )
       .then((res) => res.json())
-      .then((data) => setsSubCategory(data.subcategories));
+      .then((data) => {
+        const slicedCategories = data.subcategories.slice(1);
+        setsSubCategory(slicedCategories);
+      });
   }, [selectedCategory]);
-  const [selectedSubCategory, setSelectedSubCategory] = useState(sub_category);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -141,7 +144,6 @@ const UpdateToy = () => {
           <select
             className="w-full outline-0 rounded border border-slate-600 text-lg px-5 py-2 text-slate-500 shadow-md "
             name="subCategory"
-            defaultValue={selectedSubCategory}
             required
             onChange={(e) => setSelectedSubCategory(e.target.value)}
           >

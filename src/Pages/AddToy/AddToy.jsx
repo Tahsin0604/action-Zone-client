@@ -11,7 +11,10 @@ const AddToy = () => {
       `https://toy-marketplace-server-eta-weld.vercel.app/category/${selectedCategory}`
     )
       .then((res) => res.json())
-      .then((data) => setsSubCategory(data.subcategories));
+      .then((data) => {
+        const slicedCategories = data.subcategories.slice(1);
+        setsSubCategory(slicedCategories);
+      });
   }, [selectedCategory]);
   const [selectedSubCategory, setSelectedSubCategory] = useState(
     subCategory[0]
